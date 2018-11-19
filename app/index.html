@@ -1,0 +1,261 @@
+
+<!doctype html>
+<!-- https://pwafire.org/developer 2018 
+-->
+<html lang="en">
+     <head>
+     <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113005114-1"></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+
+     gtag('config', 'UA-113005114-1');
+     </script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>PWA Fire Codelabs - How to build 100% PWA using Angular 6+ and Schematic</title>
+    <meta name="description" content="In this codelab we are going to build PWA using Angular & Schematic (ng add),
+    Firebase and PWA standards. We're presenting how do it from scratch and get 100% progressive app.">
+    <meta name="twitter:image" content="https://pwafire.org/images/pwafire-apps.jpg">
+    <!-- web manifest -->
+    <link rel="manifest" href="https://pwafire.org/manifest.json">
+    <link rel="icon" sizes="192x192" href="https://pwafire.org/developer/images/icons/icon-192x192.png">
+    <!-- Fallback to homescreen for Chrome <39 on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="PWA Fire">
+    <link rel="icon" sizes="192x192" href="https://pwafire.org/images/icons/icon-192x192.png">
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="PWA Fire">
+    <link rel="apple-touch-icon" href="https://pwafire.org/images/icons/pwafire32white.png">
+    <meta name="theme-color" content="#fff">
+    <link rel="shortcut icon" sizes="32x32" href="https://pwafire.org/images/pwafire32white.png">
+    <!-- codelab sharing meta data -->
+    <meta property="og:title" content="PWA Fire Codelabs - Make Your PWA sharable with Web Share API">
+    <meta property="og:site_name" content="PWA Fire Codelabs - Make Your PWA sharable with Web Share API">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="In this codelab you will learn how to use the Web Share API which allows you easily trigger the native Android share dialog, passing either a URL or text to share.">
+    <meta property="og:image" content="https://pwafire.org/images/pwafire-apps.jpg">
+    <meta property="og:image:type" content="image/png" />
+    <meta name="theme-color" content="#fff">
+    <!-- canonical url -->
+    <link rel="canonical" href="http://pwafire.org/developer/codelabs/pwafire/">
+    <!-- Page styles -->
+    <link rel="stylesheet" href="https://pwafire.org/developer/pwa/assets/prism-default.css">
+    <link rel="stylesheet" href="https://pwafire.org/developer/pwa/material.min.css">
+    <link rel="stylesheet" href="https://pwafire.org/developer/pwa/assets/main.css">
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+
+  <body class="started">
+  <div class="image-preloader"></div>
+  <div class="docs-layout mdl-layout mdl-js-layout">
+    <header class="docs-layout-header mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <span class="docs-layout-title mdl-layout-title"><a href="https://pwafire.org/developer/">Project<br>PWA<br>Fire</a></span>
+      </div>
+      <div class="docs-navigation__container">
+        <nav class="docs-navigation mdl-navigation">
+          <a href="#" class="mdl-navigation__link started">Start Codelab</a>
+          <a href="" class="mdl-navigation__link codelab">Get Started</a>
+          <a href="" class="mdl-navigation__link showcase">Showcase</a>
+          <a href="https://twitter.com/pwafire" class="mdl-navigation__link ">Community</a>
+          <a href="https://pwafire.org/developer/" class="mdl-navigation__link faq">FAQ</a>
+          <a href="../" class="mdl-navigation__link ">Back</a>
+          <div class="spacer"></div>
+          <a href="https://github.com/mayeedwin/pwafire" class="mdl-navigation__link mdl-navigation__link--icon github"><i class="material-icons">link</i><span>GitHub</span></a>
+          <a href="https://github.com/mayeedwin/pwafire/releases" class="mdl-navigation__link mdl-navigation__link--icon download">
+          <i class="material-icons">&#xE2C4;</i><span>Download</span>
+          <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--fab mdl-button--mini-fab mdl-color--lime-A200">
+          <i class="material-icons">&#xE2C4;</i>
+          </button>
+          </a>
+        </nav>
+      </div>
+      <i class="material-icons scrollindicator scrollindicator--right">&#xE315;</i>
+      <i class="material-icons scrollindicator scrollindicator--left">&#xE314;</i>
+    </header>
+    <main class="docs-layout-content mdl-layout__content mdl-color-text--grey-600">
+      <div class="content mdl-grid mdl-grid--no-spacing" id="content">
+        <div class="subpageheader mdl-cell--12-col">Start codelab</div>
+<div class="docs-text-styling">
+  <section class="docs-toc">
+    <h3>Codelab Flow</h3>
+    <nav class="section-content">
+      <ul>
+        <li><a href="#install-dependencies">Install dependencies</a></li>
+        <li><a href="#create-new-app">Create new Angular project</a></li>
+        <li><a href="#use-schematic">Apply PWA features using a Schematic</a></li>
+        <li><a href="#analyze">Analyze applied changes</a></li>
+        <li><a href="#build">Build Angular app</a></li>
+        <li><a href="#create-firebase">Create Firebase project</a></li>
+        <li><a href="#deploy">Deploy your app</a></li>
+        <li><a href="#test">Test your PWA</a></li>
+
+      </ul>
+    </nav>
+  </section>
+
+  <section id="install-dependencies">
+    <h3>Install dependencies</h3>
+    <div class="section-content">
+      <span class="mdl-chip mdl-chip--contact">
+        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">L</span>
+        <span class="mdl-chip__text">Last updated on 19/11/18</span>
+    </span>
+    <span class="mdl-chip mdl-chip--contact">
+        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">P</span>
+        <span class="mdl-chip__text">Progressive Web Apps</span>
+    </span>
+      <p>Check that you have node.js and Angular CLI installed. Input in your console:</p>
+        <pre>node -v</pre>
+      <p>If the command is recognized and you got node.js version go to the next step. If not, visit page:
+          <a href="https://nodejs.org" target="_blank">nodejs.org</a> and install node.js (download proper version for your OS).
+      </p>
+      <p>Check that you have node.js and Angular CLI installed. Input in your console:</p>
+        <pre>ng version</pre>
+        <p>Verify that you got following view (check if CLI version is not lower than 6)</p>
+        <img src="assets/screen.png" alt="" style="width: 60%; text-align: center">
+        <p>If you need update Angular or install the newest version, use this command:</p>
+        <pre>npm install -g @angular/cli</pre>
+    </div>
+  </section>
+
+    <section id="create-new-app">
+        <h3>Create new Angular project</h3>
+        <div class="section-content">
+            <p>Create new Angular project using CLI. "pwa-ng" replace with your own app name. </p>
+            <pre>ng new pwa-ng</pre>
+            <p>After successfully initialized app change location to the created directory:</p>
+            <pre>cd pwa-ng</pre>
+        </div>
+    </section>
+    <section id="use-schematic">
+      <h3>Apply PWA features using a Schematic</h3>
+      <div class="section-content">
+          <p>It's a high time to apply PWA features and make your app progressive. Now we're going use my favourite
+          because of Developer Experience Angular feature - Schematic. I will use the only one command to
+          progressively enhance my app.</p>
+          <pre>ng add @angular/pwa</pre>
+          <p>Let's analyze what happened inside Angular project:</p>
+          <pre>git status</pre>
+          <p>As you can see at the following screen, Angular CLI has added and updated necessary files to make
+          your app progressive:</p>
+          <img src="assets/screen2.png" alt="" style="width: 60%; text-align: center">
+      </div>
+    </section>
+    <section id="analyze">
+        <h3>Analyze applied changes</h3>
+        <div class="section-content">
+            <p>Let's analyze what happened inside each file.</p>
+            <h4>New files:</h4>
+            <p><strong>ngsw-config.json</strong></p>
+            <img src="assets/ngsw-config-json.png" alt="" style="width: 40%">
+            <p>This file includes instruction for the Angular CLI how to handle assets for caching.</p>
+
+            <p><strong>manifest.json</strong></p>
+            <img src="assets/manifest-json.png" alt="" style="width: 40%">
+            <p>Default manifest.json file added. Properties for displaying app and icons are set inside this file.</p>
+
+            <h4>Changes to the existing files:</h4>
+            <p><strong>angular.json</strong></p>
+            <img src="assets/angular-json.png" alt="" style="width: 40%">
+            <p>Flag "serviceWorker" set to true. Manifest.json added to assets.</p>
+
+            <p><strong>index.html</strong></p>
+            <img src="assets/index.png" alt="" style="width: 60%">
+            <p>Manifest.json added to the head in index.html, theme color set, added information if javascript disabled
+                on client side using noscript</p>
+
+            <p><strong>app.module.json</strong></p>
+            <img src="assets/app.module.png" alt="" style="width: 60%">
+            <p>ServiceWorkerModule imported and file with Angular's Service Worker configuration (ng-sw.js) registered.</p>
+
+            <p><strong>package.json</strong></p>
+            <img src="assets/package.png" alt="" style="width: 40%">
+            <p>Dependencies added to the package.json file.</p>
+        </div>
+    </section>
+    <section id="build">
+        <h3>Build Angular app</h3>
+        <div class="section-content">
+            <p>Build your project before deployment:</p>
+            <pre>ng build --prod</pre>
+        </div>
+    </section>
+    <section id="create-firebase">
+        <h3>Create Firebase project</h3>
+        <div class="section-content">
+            <p>To test PWA and get 100% progressive app we need served our project via https. To do this we use super easy
+            method - Firebase hosting.</p>
+            <p>Log in firebase and create new project in <a href="https://console.firebase.google.com">firebase console</a>. If you don't have and account, register.</p>
+            <p>Log to firebase locally using command line: </p>
+            <pre>firebase login</pre>
+            <p>Init firebase project locally. Set proper project name, function: hosting and directory with bundle created during building process (dist/pwa-ng).</p>
+            <pre>firebase init</pre>
+        </div>
+    </section>
+    <section id="deploy">
+        <h3>Deploy your app</h3>
+        <div class="section-content">
+            <p>It's time to deploy your app. Let's do it!</p>
+            <pre>firebase deploy</pre>
+            <p>Run deployed project in a browser. If deploy process was successful you should have hosting URL. Let's run it!</p>
+            <img src="assets/1.png" alt="" style="width: 100%;">
+            <p>Open application tab and check if manifest.json is added and Service Worker registered.</p>
+            <img src="assets/2.png" alt="" style="width: 100%;">
+            <p></p>
+        </div>
+    </section>
+    <section id="test">
+        <h3>Test your PWA</h3>
+        <div class="section-content">
+            <p>Check if your app can work Offline:</p>
+            <img src="assets/3.png" alt="" style="width: 100%;">
+            <p>Run audit tests using Lighthouse. Open tools for Developers in Chrome, select tab 'Audit' and  check Progressive Web App option. Run test and check the results.</p>
+            <img src="assets/4.png" alt="" style="width: 100%;">
+            <p>Oh yeah! We got 100% PWA!</p>
+            <img src="assets/5.png" alt="" style="width: 100%;">
+            <p>Celebration time! :)</p>
+        </div>
+    </section>
+  
+</div>
+
+     </div>
+      <section class="docs-text-styling download mdl-color--grey-800">
+      <a href="https://github.com/mayeedwin/pwafire/fork" class="mdl-color-text--grey-50">FORK ON GITHUB</a>            
+      </section>
+      <footer class="docs-text-styling docs-footer mdl-mini-footer mdl-color--grey-900">
+        <ul>
+          <li class="mdl-mini-footer--social-btn">
+            <a href="https://twitter.com/pwafire" class="social-btn social-btn__twitter" role="button" title="Twitter"></a>
+          </li>
+          <li class="mdl-mini-footer--social-btn">
+            <a href="https://github.com/mayeedwin/pwafire" class="social-btn social-btn__github" role="button" title="GitHub"></a>
+          </li>
+          <li class="mdl-mini-footer--social-btn">
+              <a href="https://twitter.com/mayeedwin1" class="social-btn social-btn__twitter" role="button" title="Twitter"></a>
+            </li>
+        </ul>
+      </footer>
+    </main>
+  </div>
+    <!-- Material Design Lite -->
+    <script src="https://pwafire.org/developer/pwa/material.min.js"></script>
+    <!-- Enable Prism syntax highlighting -->
+    <script src="https://pwafire.org/developer/pwa/assets/prism.js"></script>
+    <script src="https://pwafire.org/developer/pwa/assets/prism-markup.min.js"></script>
+    <script src="https://pwafire.org/developer/pwa/assets/prism-javascript.min.js"></script>
+    <script src="https://pwafire.org/developer/pwa/assets/prism-css.min.js"></script>
+    <script src="https://pwafire.org/developer/pwa/assets/prism-bash.min.js"></script>
+    <script src="https://pwafire.org/developer/pwa/assets/main.js"></script>
+  </body>
+</html>
